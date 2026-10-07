@@ -1,0 +1,30 @@
+experiment_name: direction_selection
+kernel: matern52
+use_ard: false
+lengthscale: null
+target_median_correlation: 0.3
+outputscale: 1.0
+sigma_f: 0.1
+sigma_g: 0.1
+n_train: 150
+n_eval: 100
+m: 20
+m_values:
+- 5
+- 10
+- 20
+- 30
+- 50
+- 100
+d_values:
+- 500
+repeats: 5
+seed: 42
+device: cuda
+dtype: float64
+design: sobol
+dense_sampling_max_obs_dim: 200000
+deroos_sampling_max_n2: 200000
+methods:
+- LITE
+lite_prediction_batch_size: 256

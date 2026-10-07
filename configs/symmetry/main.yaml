@@ -1,0 +1,15 @@
+n_train: 1024
+m: 30
+n_targets: 200
+d_values: [50, 100, 200, 500, 1000]
+repeats: 5
+seed: 42
+kernel: matern52
+outputscale: 1.0
+# Standard deviations; gradient noise is fixed in scaled coordinates.
+sigma_f: 0.001
+sigma_g: 0.001
+target_median_correlation: 0.3
+rank_rtol: 1.0e-12
+device: cuda
+dtype: float64

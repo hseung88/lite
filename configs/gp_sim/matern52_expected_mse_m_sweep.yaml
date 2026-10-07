@@ -1,0 +1,30 @@
+experiment_name: matern52_expected_mse_m_sweep
+evaluation_mode: expected_mse
+kernel: matern52
+use_ard: false
+lengthscale: null
+target_median_correlation: 0.3
+lengthscale_probe_size: 2048
+outputscale: 1.0
+sigma_f: 0.01
+sigma_g: 0.01
+n_train: 100000
+n_eval: 256
+m: 20
+m_values: [20, 40, 80, 160, 320]
+d_values: [500]
+repeats: 5
+seed: 42
+device: cuda
+dtype: float64
+design: sobol
+sampling: zeros
+sample_eval: false
+methods: [tera_batched, lite]
+tera_prediction_batch_size: 32
+lite_prediction_batch_size: 32
+vecchia_prediction_batch_size: null
+knn_query_batch_size: 32
+knn_train_chunk_size: 4096
+measurement_repeats: 3
+warmup_batches: 2
