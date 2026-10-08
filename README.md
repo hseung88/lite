@@ -54,7 +54,8 @@ of retaining two directions per gradient.
 versus iteration. LITE and TERA use objective values and gradients, while VBO and TuRBO-1 use objective values only.
 
 LITE outperforms the function-only baselines on all three tasks. It achieves final objective values comparable to TERA
-while retaining only two directional derivatives per obseved gradient.
+while retaining only two directional derivatives per observed gradient.
+
 ---
 
 ## Installation
@@ -131,6 +132,9 @@ configured training settings. Use `--help` to list all available options.
 ```bibtex
 @misc{seung2026twodirection,
   title = {Derivative Gaussian Processes on a Two-Direction Budget},
+  author={Hyunseok Seung and Matthias Katzfuss},
+  eprint={2610.10428},
+  archivePrefix={arXiv},
   year  = {2026},
 }
 ```
