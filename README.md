@@ -28,7 +28,7 @@ prediction targets. Bottom panels show the time and peak GPU memory of one train
 Buckyball-catcher dataset. Both methods use batched implementations. Prediction uses batch size 32;
 training-step comparisons use batch sizes 32 and 1,024.
 
-In the GP prediction experiment, LITE matches TERA's accuracy at equal conditioning set size.
+- In the GP prediction experiment, LITE matches TERA's accuracy at equal conditioning set size.
 At `m = 320`, LITE achieves lower RMSE than TERA at `m = 80` while
 running **58× faster** and using **4.3% of its memory**. TERA runs out of GPU memory for `m ≥ 160`
 at the tested batch size.
@@ -41,7 +41,7 @@ at the tested batch size.
 information. Panels show test RMSE per atom in physical units, end-to-end wall-clock time, and peak GPU memory.
 All methods use isotropic SE kernels and identical train/test splits. LITE and TERA use `m = 30` and training/prediction batches of 32.
 
-LITE achieves lower RMSE than DDSVGP, DSoftKI, and the function-only Standard GP, with the lowest runtime
+- LITE achieves lower RMSE than DDSVGP, DSoftKI, and the function-only Standard GP, with the lowest runtime
 and peak GPU memory on every benchmark. Compared with TERA, it runs **2.8–3.5× faster** and uses
 **13.3–30.2% of its memory**, while its RMSE is higher. This comparison illustrates the accuracy-cost tradeoff
 of retaining two directions per gradient.
@@ -53,7 +53,7 @@ of retaining two directions per gradient.
 **Figure 3:** Simple regret on Ackley-500D and Levy-800D, and the best observed objective value on LassoDNA-180D,
 versus iteration. LITE and TERA use objective values and gradients, while VBO and TuRBO-1 use objective values only.
 
-LITE outperforms the function-only baselines on all three tasks. It achieves final objective values comparable to TERA
+- LITE outperforms the function-only baselines on all three tasks. It achieves final objective values comparable to TERA
 while retaining only two directional derivatives per observed gradient.
 
 ---
@@ -64,8 +64,8 @@ Use Python 3.10 or newer. A CUDA-enabled PyTorch installation is recommended for
 Run the following commands from the repository root:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+python -m venv lite
+source lite/bin/activate
 python -m pip install -e .
 ```
 
@@ -79,7 +79,6 @@ Configs and CLI overrides jointly specify the experiment settings; run a script 
 | Experiment            | Run script | Config |
 |:----------------------|:---|:---|
 | GP simulation         | `scripts/run_gp_sim_subprocess.py` | `configs/gp_sim/matern52_expected_mse_m_sweep.yaml` |
-| MD22 `m` scaling      | `scripts/run_md22_step_scaling.py` | `configs/md22/main.yaml` |
 | GP regression on MD22 | `scripts/run_md22.py` | `configs/md22/main.yaml` |
 | BO - Synthetic        | `scripts/run_bo.py` | `configs/bo/main.yaml` |
 | BO - LassoDNA         | `scripts/run_bo.py` | `configs/bo/lassodna.yaml` |
@@ -99,7 +98,7 @@ python -u scripts/run_md22.py \
   --outdir outputs/md22_local \
   --methods lite,tera_batched --m 30 \
   --train-epochs 1 --train-batch-size 32 --prediction-batch-size 32 \
-  --seeds 7,23,42,71,99 \
+  --seeds 1,27,42,86,99 \
   --device cuda --dtype float64
 ```
 
@@ -121,20 +120,18 @@ python -u scripts/run_bo.py \
 ```
 
 Method-specific flags override common options. VBO and TuRBO use their own
-configured training settings. Use `--help` to list all available options.
+configured training settings.
 
 ---
 
 ## Citation
 
-<!-- Add author names and the arXiv identifier when the public preprint is available. -->
-
 ```bibtex
 @misc{seung2026twodirection,
-  title = {Derivative Gaussian Processes on a Two-Direction Budget},
+  title={Derivative Gaussian Processes on a Two-Direction Budget},
   author={Hyunseok Seung and Matthias Katzfuss},
   eprint={2610.10428},
   archivePrefix={arXiv},
-  year  = {2026},
+  year={2026},
 }
 ```
